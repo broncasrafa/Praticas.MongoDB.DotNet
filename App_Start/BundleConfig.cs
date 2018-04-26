@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace MongoDB.DotNet
 {
@@ -23,9 +22,23 @@ namespace MongoDB.DotNet
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/js/template").Include(
+                      "~/Content/Template/js/jquery.min.js",
+                      "~/Content/Template/js/popper.min.js",
+                      "~/Content/Template/js/bootstrap.min.js",
+                      "~/Content/Template/js/jquery.slimscroll.js",
+                      "~/Content/Template/js/sidebarmenu.js",
+                      "~/Content/Template/js/sticky-kit.min.js",
+                      "~/Content/Template/js/custom.min.js"));
+
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/bootstrap.css"));
+
+            bundles.Add(new StyleBundle("~/Content/css/template").Include(
+                       "~/Content/Template/css/bootstrap.min.css",
+                       "~/Content/Template/css/helper.css",
+                       "~/Content/Template/css/style.css"));
         }
     }
 }

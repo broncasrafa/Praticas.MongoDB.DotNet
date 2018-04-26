@@ -1,0 +1,76 @@
+﻿@model MongoDB.DotNet.Models.Blog.PostModel
+
+@{
+    ViewBag.Title = "Post";
+}
+
+<div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+        <h3 class="text-primary">Inicío</h3>
+    </div>
+    <div class="col-md-7 align-self-center">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active">@Html.ActionLink("Blog", "Index", "Blog")</li>
+        </ol>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">@Model.Post.Title</h4>
+                    <h6 class="card-subtitle">@Model.Post.Author - @Model.Post.CreatedAtUtc</h6>
+                    <p>
+                        @foreach (var tag in Model.Post.Tags)
+                        {                            
+                            <small class="form-control-feedback">
+                                <a href="@Url.Action("Posts", "Blog", new { tag = tag })">@tag</a>
+                            </small>
+                        }
+                    </p>
+                    <p>
+                        <h3>@Model.Post.Content</h3>
+                    </p>
+
+                    <h3>Comments</h3>
+                    <hr />
+                    
+                    @if (Model.Post.Comments.Count > 0)
+                    {
+                        foreach (var comment in Model.Post.Comments)
+                        {
+                            <h6>@comment.Author on @comment.CreatedAtUtc</h6>
+                            <p>
+                                @comment.Content
+                            </p>
+                            <hr />
+                        }
+                    }
+                    else
+                    {
+                        <h6 class="card-subtitle"> Este post não possuí comentários</h6>
+                    }
+                    <hr />
+
+                    @if (Request.IsAuthenticated)
+                    {
+                        <h3>Add Comment</h3>
+                        using (Html.BeginForm("NewComment", "Blog"))
+                        {
+                            <input type="hidden" name="PostId" value="@Model.Post.Id" />
+                            <textarea name="Content" class="form-control" style="height: 180px" placeholder="Escreva um comentário..."></textarea>
+                            <br />
+                            <p>
+                                <button type="submit" class="btn btn-info m-b-10 m-l-5">Comment</button>
+                            </p>
+                        }
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,44 +1,237 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNet.Identity
+
+<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
+    
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="~/favicon.ico">
+
+    <title>@ViewBag.Title - ASP.NET Mvc Application with MongoDB</title>
+
+
+    @*@Styles.Render("~/Content/css")*@
+    @Styles.Render("~/Content/css/template")
     @Scripts.Render("~/bundles/modernizr")
 
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:** -->
+    <!--[if lt IE 9]>
+        <script src="https:**oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+<body class="fix-header fix-sidebar">
+    
+    <!-- Main wrapper  -->
+    <div class="main-wrapper">
+
+        @if (Request.IsAuthenticated)
+        {
+            <!-- header header  -->
+            <div class="header">
+                <nav class="navbar top-navbar navbar-expand-md navbar-light">
+                    <!-- Logo -->
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="/Home/Index">
+                            <!-- Logo icon -->
+                            <b><img src="~/Content/images/mongodb_01.png" alt="homepage" class="dark-logo" /></b>
+                            <!--End Logo icon -->
+                            <!-- Logo text -->
+                            <span><img src="~/Content/images/mongodb_02.png" alt="homepage" class="dark-logo" /></span>
+                        </a>
+                    </div>
+
+                    <div class="navbar-collapse">
+
+                        <!-- toggle and nav items -->
+                        <ul class="navbar-nav mr-auto mt-md-0">
+                            <!-- This is  -->
+                            <li class="nav-item">
+                                <a class="nav-link nav-toggler hidden-md-up text-muted  " href="javascript:void(0)">
+                                    <i class="mdi mdi-menu"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item m-l-10">
+                                <a class="nav-link sidebartoggler hidden-sm-down text-muted  " href="javascript:void(0)">
+                                    <i class="ti-menu"></i>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <!-- User profile and search -->
+                        <ul class="navbar-nav my-lg-0">
+                            <!-- Search -->
+                            <li class="nav-item hidden-sm-down search-box">
+                                <a class="nav-link hidden-sm-down text-muted" href="javascript:void(0)">
+                                    <i class="ti-search"></i>
+                                </a>
+                                <form class="app-search">
+                                    <input type="text" class="form-control" placeholder="Search here">
+                                    <a class="srh-btn">
+                                        <i class="ti-close"></i>
+                                    </a>
+                                </form>
+                            </li>
+
+                            <li class="nav-item" style="font-size: 13px; margin-top: 20px;">
+                                @User.Identity.Name
+                            </li>
+
+                            <!-- Profile -->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-muted" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <img src="~/Content/images/user-unknow-icon.jpg" alt="user" class="profile-pic" />
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right animated zoomIn">
+                                    <ul class="dropdown-user">
+                                        <li><a href="#"><i class="ti-user"></i> Profile</a></li>
+
+                                        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                                        {                                            
+                                            <li>                                                
+                                                <a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-power-off"></i> Logout</a>
+                                            </li>
+                                        }                                        
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+
+
+
+                    </div>
+                </nav>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
+
+            <!-- Left Sidebar  -->
+            <div class="left-sidebar">
+                <!-- Sidebar scroll-->
+                <div class="scroll-sidebar">
+                    <!-- Sidebar navigation-->
+                    <nav class="sidebar-nav">
+                        <ul id="sidebarnav">
+                            <li class="nav-devider"></li>
+                            <li class="nav-label">M101N: MongoDB for .NET Developers</li>
+                            <li>
+                                <a class="has-arrow" href="#" aria-expanded="false">
+                                    <i class="fa fa-book"></i>
+                                    <span class="hide-menu">M101N</span>
+                                </a>
+                                <ul aria-expanded="false" class="collapse">
+                                    <li>
+                                        <a href="#" class="has-arrow">Week 1: Introduction</a>
+                                        <ul aria-expanded="false" class="collapse">
+                                            <li><a href="#">Homework 1.1</a></li>
+                                            <li><a href="#">Homework 1.2</a></li>
+                                            <li><a href="#">Homework 1.3</a></li>
+                                            <li><a href="#">Homework 1.4</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="has-arrow">Week 2: CRUD</a>
+                                        <ul aria-expanded="false" class="collapse">
+                                            <li><a href="#">Homework 2.1</a></li>
+                                            <li><a href="#">Homework 2.2</a></li>
+                                            <li><a href="#">Homework 2.3</a></li>
+                                            <li><a href="#">Homework 2.4</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="has-arrow">Week 3: Schema Designer</a>
+                                        <ul aria-expanded="false" class="collapse">
+                                            <li><a href="#">Homework 3.1</a></li>
+                                            <li><a href="#">Homework 3.2</a></li>
+                                            <li><a href="#">Homework 3.3</a></li>
+                                            <li><a href="#">Homework 3.4</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="has-arrow">Week 4: Performance</a>
+                                        <ul aria-expanded="false" class="collapse">
+                                            <li><a href="#">Homework 4.1</a></li>
+                                            <li><a href="#">Homework 4.2</a></li>
+                                            <li><a href="#">Homework 4.3</a></li>
+                                            <li><a href="#">Homework 4.4</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="has-arrow">Week 5: Aggregation</a>
+                                        <ul aria-expanded="false" class="collapse">
+                                            <li><a href="#">Homework 5.1</a></li>
+                                            <li><a href="#">Homework 5.2</a></li>
+                                            <li><a href="#">Homework 5.3</a></li>
+                                            <li><a href="#">Homework 5.4</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="has-arrow">Week 6: App Engineering</a>
+                                        <ul aria-expanded="false" class="collapse">
+                                            <li><a href="#">Homework 6.1</a></li>
+                                            <li><a href="#">Homework 6.2</a></li>
+                                            <li><a href="#">Homework 6.3</a></li>
+                                            <li><a href="#">Homework 6.4</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="has-arrow">Final Exam</a>
+                                        <ul aria-expanded="false" class="collapse">
+                                            <li><a href="#">Exam 1</a></li>
+                                            <li><a href="#">Exam 2</a></li>
+                                            <li><a href="#">Exam 3</a></li>
+                                            <li><a href="#">Exam 4</a></li>
+                                            <li><a href="#">Exam 5</a></li>
+                                            <li><a href="#">Exam 6</a></li>
+                                            <li><a href="#">Exam 7</a></li>
+                                            <li><a href="#">Exam 8</a></li>
+                                            <li><a href="#">Exam 9</a></li>
+                                            <li><a href="#">Exam 10</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Blog App", "Posts", "Blog")
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-label">Repository Pattern</li>
+                            <li>
+                                <a class="has-arrow" href="#" aria-expanded="false">
+                                    <i class="fa fa-book"></i>
+                                    <span class="hide-menu">Repository</span>
+                                </a>
+                                <ul aria-expanded="false" class="collapse">
+                                    <li><a href="#">Exemplo</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- End Sidebar navigation -->
+                </div>
+                <!-- End Sidebar scroll-->
             </div>
+        }
+        else
+        {
+            @Html.Partial("_LoginPartial")
+        }
+        
+        <!-- Page wrapper  -->
+        <div class="page-wrapper">
+            
+            @RenderBody()
+
+            <!-- footer -->
+            <footer class="footer"> © @DateTime.Now.Year - My ASP.NET MVC Application using MongoDB Database</footer>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+
+    @Scripts.Render("~/bundles/js/template")
     @RenderSection("scripts", required: false)
 </body>
 </html>

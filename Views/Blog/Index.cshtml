@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewBag.Title = "Blog - Posts";
+}
+
+<div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+        <h3 class="text-primary">Inicío</h3>
+    </div>
+    <div class="col-md-7 align-self-center">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active">Blog</li>
+        </ol>
+    </div>
+</div>
+
+<div class="container-fluid">    
+    <div class="row">
+        <div class="col-12">
+
+            @Html.ActionLink("Add Post", "NewPost", "Blog", null, new { @class = "btn btn-success btn-flat m-b-10 m-l-5" })
+
+            <h4 class="card-title">Recents Posts</h4>
+
+            @if (Model.RecentPosts != null && Model.RecentPosts.Count > 0)
+            {
+                foreach (var post in Model.RecentPosts)
+                {
+                    <div class="card">
+                        <div class="card-body">
+                            <h4>
+                                @post.Title by @post.Author on @post.CreatedAtUtc
+                            </h4>
+                            <p>
+                                @post.Content.Substring(0, Math.Min(post.Content.Length - 1, 100))
+                            </p>
+                            <p>
+                                <a class="btn btn-info btn sweet-message" href="@Url.Action("Post", "Blog", new { id = post.Id })">View &raquo;</a>
+                            </p>
+                        </div>
+                    </div>
+                }
+
+            }
+            else
+            {
+                <h6 class="card-subtitle">
+                    Nenhum post encontrado
+                </h6>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+@*
+
+    <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+            <h3 class="text-primary">Inicío</h3>
+        </div>
+        <div class="col-md-7 align-self-center">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active">Blog</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Recents Posts</h4>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+*@

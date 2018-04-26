@@ -1,31 +1,86 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Inicio";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+        <h3 class="text-primary">Inicío</h3>
+    </div>
+    <div class="col-md-7 align-self-center">
+        <ol class="breadcrumb">            
+            <li class="breadcrumb-item active">Home</li>
+        </ol>
+    </div>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <span style="line-height: 30px;">
+                        Estudo e praticas dirigidos a utilização do banco de dados <a target="_blank" href="https://www.mongodb.com/">MongoDB</a>
+                        junto com a biblioteca <a target="_blank" href="https://www.mongodb.com/">C# and .NET MongoDB Driver</a> (driver .NET oficial para o MongoDB)
+                        e o <a target="_blank" href="https://www.asp.net/mvc">ASP.NET MVC</a>.
+                        Treinamento realizado na <a target="_blank" href="https://university.mongodb.com/">MongoDB University</a> e outras praticas.
+                        <br /><br />
+                    </span>
+                    <p>
+                        <a href="https://docs.mongodb.com/manual/" target="_blank" class="btn btn-primary m-b-10 m-l-5">Aprenda mais sobre MongoDB&raquo;</a>
+                        &nbsp;
+                    </p>
+                </div> 
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+
+
+    <div class="row">
+        <!-- /# column -->
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-title">
+                    <h4>M101N: MongoDB for .NET Developers</h4>
+                </div>
+                <div class="button-list">
+                    <p class="text-muted m-b-15">
+                        Resolução das "homeworks" do curso que abordou a instalação básica do MongoDB, JSON, Schema Design, consultas, operações CRUD, indexação, agregação básica e o trabalho com o driver C# .NET.
+                    </p>                    
+                    <button type="button" class="btn btn-primary m-b-10 m-l-5">Mais&raquo;</button>
+                </div>
+            </div>            
+        </div>
+
+        <!-- /# column -->
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-title">
+                    <h4>M101.NET Blog Application</h4>
+                </div>
+                <div class="button-list">
+                    <p class="text-muted m-b-15">
+                        Implementação simples de um Blog multi-usuário para o curso de MongoDB .NET (M101.NET).                        
+                    </p>
+                    <button type="button" class="btn btn-primary m-b-10 m-l-5">Mais&raquo;</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- /# column -->
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-title">
+                    <h4>Repository Pattern</h4>
+                </div>
+                <div class="button-list">
+                    <p class="text-muted m-b-15">
+                        Utilização do padrão Repositório usando o MongoDB e com o driver C# .NET.
+                    </p>
+                    <button type="button" class="btn btn-primary m-b-10 m-l-5">Mais&raquo;</button>
+                </div>
+            </div>            
+        </div>
+        
     </div>
 </div>
